@@ -3,3 +3,4 @@ tensorflow-macos
 tensorflow-metal
 scikit-learn
 pillow
+jupyterlab

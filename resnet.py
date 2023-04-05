@@ -1,5 +1,6 @@
 import os
 import pickle
+import random
 
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
@@ -33,7 +34,7 @@ def find_similar_logos(logo_path, database, model, threshold=0.9):
         if similarity >= threshold:
             similar_logos.append((img_path, similarity))
 
-    return sorted(similar_logos, key=lambda x: x[1], reverse=True)
+    return sorted(similar_logos, key=lambda x: x[1], reverse=True)[:5]
 
 
 efficientnet_model = EfficientNetV2L(
@@ -75,9 +76,9 @@ image_files = [
 ]
 
 # Select a random image file
-# target_logo_file = random.choice(image_files)
-# target_logo_path = os.path.join(data_folder, target_logo_file)
-target_logo_path = "target1.jpg"
+target_logo_file = random.choice(image_files)
+target_logo_path = os.path.join(data_folder, target_logo_file)
+# target_logo_path = "target1.jpg"
 # Find similar logos to the target logo
 similar_logos = find_similar_logos(
     target_logo_path, loaded_logo_database, efficientnet_model
