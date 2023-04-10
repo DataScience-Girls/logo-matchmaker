@@ -1,0 +1,8 @@
+streamlit
+tesserocr
+torch
+torchvision
+pillow
+transformers
+datasets
+tqdm
