@@ -4,3 +4,4 @@ tensorflow-metal
 scikit-learn
 pillow
 jupyterlab
+streamlit
