@@ -12,7 +12,7 @@ from tensorflow.keras.preprocessing import image
 
 
 def load_and_preprocess_image(img_path, target_size=(224, 224)):
-    img = image.load_img(img_path)
+    img = image.load_img(img_path, target_size=target_size)
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array = preprocess_input(img_array)
@@ -25,7 +25,7 @@ def extract_features(img_path, model):
     return features
 
 
-def find_similar_logos(logo_path, database, model, threshold=0.9):
+def find_similar_logos(logo_path, database, model, threshold=0.9, result_size=5):
     logo_features = extract_features(logo_path, model)
     similar_logos = []
 
@@ -34,7 +34,7 @@ def find_similar_logos(logo_path, database, model, threshold=0.9):
         if similarity >= threshold:
             similar_logos.append((img_path, similarity))
 
-    return sorted(similar_logos, key=lambda x: x[1], reverse=True)[:5]
+    return sorted(similar_logos, key=lambda x: x[1], reverse=True)[:result_size]
 
 
 efficientnet_model = EfficientNetV2L(
